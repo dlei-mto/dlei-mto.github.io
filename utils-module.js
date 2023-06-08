@@ -2,7 +2,7 @@ console.log('load utils-module.js');
 
 console.log('[prettifyXml]', 'https://stackoverflow.com/questions/376373/pretty-printing-xml-with-javascript');
 function prettifyXml(sourceXml) {
-  console.log('--- raw xml ---\n', sourceXml);
+  console.log('--- raw xml ---\n' + sourceXml);
   const xmlDoc = new DOMParser().parseFromString(sourceXml, 'application/xml');
   if (xmlDoc.getElementsByTagName('parsererror').length) {
     return '--- XML DOM Parser Error ---\n' + sourceXml;
