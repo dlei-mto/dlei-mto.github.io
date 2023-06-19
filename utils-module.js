@@ -8,20 +8,12 @@ function prettifyXml(sourceXml) {
     return '--- XML DOM Parser Error ---\n' + sourceXml;
   }
   const xsltDoc = new DOMParser().parseFromString([
-      // // describes how we want to modify the XML - indent everything
-      // '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform">',
-      // '  <xsl:strip-space elements="*"/>',
-      // '  <xsl:template match="para[content-style][not(text())]">', // change to just text() to strip space in text nodes
-      // '    <xsl:value-of select="normalize-space(.)"/>',
-      // '  </xsl:template>',
-      // '  <xsl:template match="node()|@*">',
-      // '    <xsl:copy><xsl:apply-templates select="node()|@*"/></xsl:copy>',
-      // '  </xsl:template>',
-      // '  <xsl:output indent="yes"/>',
-      // '</xsl:stylesheet>',
       '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">',
       '  <xsl:strip-space elements="*"/>',
-      '  <xsl:output omit-xml-declaration="yes" indent="yes"/>',
+      '  <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>', // xslt:indent-amount="4" xmlns:xslt="http://xml.apache.org/xslt" ?
+      '  <xsl:template match="para[content-style][not(text())]">', // change to just text() to strip space in text nodes
+      '    <xsl:value-of select="normalize-space(.)"/>',
+      '  </xsl:template>',
       '  <xsl:template match="node()|@*">',
       '    <xsl:copy><xsl:apply-templates select="node()|@*"/></xsl:copy>',
       '  </xsl:template>',
